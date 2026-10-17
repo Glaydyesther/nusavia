@@ -1,12 +1,17 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Mainoptions, NavOption } from './mainoptions/mainoptions';
+import { Pacients } from './pacients/pacients';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Mainoptions, Pacients],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('nusavia');
+  protected readonly selectedOption = signal<NavOption>('Pacientes');
+
+  protected selectOption(option: NavOption): void {
+    this.selectedOption.set(option);
+  }
 }

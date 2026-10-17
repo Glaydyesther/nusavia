@@ -1,0 +1,147 @@
+:host {
+  display: block;
+  flex: 0 0 203px;
+  width: 203px;
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 21px 8px 27px;
+  background:
+    radial-gradient(ellipse at 12% 52%, rgba(106, 146, 114, 0.12), transparent 45%),
+    linear-gradient(145deg, #244b39, #173c2e 76%);
+  color: #fff;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 27px;
+  color: #f6f7f5;
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  text-decoration: none;
+}
+
+.brand-leaf {
+  width: 40px;
+  height: 40px;
+  fill: #9bbba0;
+  stroke: #9bbba0;
+  stroke-width: 1;
+}
+
+.main-nav {
+  display: grid;
+  gap: 5px;
+}
+
+.nav-option {
+  display: flex;
+  min-height: 47px;
+  align-items: center;
+  gap: 17px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #f4f5f3;
+  font-size: 14px;
+  text-align: left;
+  transition: background-color 140ms ease;
+}
+
+.nav-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-option.active {
+  background: linear-gradient(100deg, #719279, #66876e);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.nav-option svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.sidebar-note {
+  position: relative;
+  margin-top: auto;
+  padding: 0 23px;
+  color: #b9c8bb;
+}
+
+.sidebar-note svg {
+  position: absolute;
+  bottom: 69px;
+  left: -8px;
+  width: 150px;
+  height: 110px;
+  fill: #628b69;
+  opacity: 0.82;
+}
+
+.note-rule {
+  height: 1px;
+  margin-bottom: 15px;
+  background: rgba(226, 235, 226, 0.5);
+}
+
+.sidebar-note p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  :host {
+    flex-basis: 68px;
+    width: 68px;
+  }
+
+  .sidebar {
+    align-items: center;
+    padding: 15px 5px 12px;
+  }
+
+  .brand {
+    margin-bottom: 25px;
+  }
+
+  .brand span,
+  .nav-option span,
+  .sidebar-note {
+    display: none;
+  }
+
+  .brand-leaf {
+    width: 34px;
+    height: 34px;
+  }
+
+  .main-nav {
+    width: 100%;
+    justify-items: center;
+  }
+
+  .nav-option {
+    width: 54px;
+    justify-content: center;
+    padding: 0;
+  }
+}

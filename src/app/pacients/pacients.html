@@ -1,0 +1,236 @@
+<div class="patients-page">
+  <div class="page-heading">
+    <div>
+      <h1>Pacientes</h1>
+      <p>Administra y consulta tus pacientes</p>
+    </div>
+    <button class="btn btn-success add-patient-button" type="button" (click)="showAddForm.set(true)">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+      Nuevo paciente
+    </button>
+  </div>
+
+  <section class="summary-cards" aria-label="Resumen de pacientes">
+    <article class="summary-card active-summary">
+      <span class="summary-icon people-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32">
+          <circle cx="16" cy="9" r="4" />
+          <path d="M8 25v-2a8 8 0 0 1 16 0v2ZM5 14a3 3 0 1 0 0 6m22-6a3 3 0 1 1 0 6M3 25v-1a5 5 0 0 1 4-5m22 6v-1a5 5 0 0 0-4-5" />
+        </svg>
+      </span>
+      <div class="summary-copy">
+        <span>Pacientes activos</span>
+        <strong>128</strong>
+      </div>
+      <svg class="summary-accent leaf-accent" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 3C12 3 5 7 4 14c-.5 3 1 5 3 6 8-3 12-9 14-17ZM5 22c2-6 6-10 11-14" />
+      </svg>
+    </article>
+
+    <article class="summary-card appointments-summary">
+      <span class="summary-icon calendar-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32">
+          <rect x="5" y="7" width="22" height="21" rx="2" />
+          <path d="M10 4v6m12-6v6M5 13h22M11 18h2m5 0h2m-9 5h2m5 0h2" />
+        </svg>
+      </span>
+      <div class="summary-copy">
+        <span>Citas esta semana</span>
+        <strong>24</strong>
+      </div>
+      <svg class="summary-accent" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="17" rx="2" />
+        <path d="M8 3v4m8-4v4M4 10h16M8 14h2m4 0h2" />
+      </svg>
+    </article>
+
+    <article class="summary-card followup-summary">
+      <span class="summary-icon followup-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32">
+          <rect x="6" y="4" width="20" height="24" rx="2" />
+          <path d="M11 11h10m-10 5h10m-10 5h6" />
+        </svg>
+      </span>
+      <div class="summary-copy">
+        <span>Seguimientos pendientes</span>
+        <strong>8</strong>
+      </div>
+      <svg class="summary-accent clock-accent" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </svg>
+    </article>
+  </section>
+
+  <div class="patient-filters">
+    <label class="search-box">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="7" />
+        <path d="m16 16 5 5" />
+      </svg>
+      <input
+        class="form-control"
+        type="search"
+        aria-label="Buscar paciente"
+        placeholder="Buscar paciente..."
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+      />
+    </label>
+    <label class="status-select">
+      <span class="visually-hidden">Filtrar por estado</span>
+      <select
+        class="form-select"
+        [ngModel]="selectedStatus()"
+        (ngModelChange)="selectedStatus.set($event)"
+      >
+        <option>Todos los estados</option>
+        <option>Activo</option>
+        <option>En seguimiento</option>
+      </select>
+    </label>
+  </div>
+
+  <section class="patients-table-card" aria-label="Lista de pacientes">
+    <div class="table-responsive">
+      <table class="table patients-table">
+        <thead>
+          <tr>
+            <th scope="col">Paciente</th>
+            <th scope="col">Última consulta</th>
+            <th scope="col">Objetivo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Próxima cita</th>
+            <th scope="col"><span class="visually-hidden">Acciones</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (patient of visiblePatients(); track patient.id) {
+            <tr>
+              <td>
+                <div class="patient-name">
+                  <img [src]="patient.avatar" [alt]="'Foto de ' + patient.name" />
+                  <span>{{ patient.name }}</span>
+                </div>
+              </td>
+              <td>{{ patient.lastVisit }}</td>
+              <td>{{ patient.objective }}</td>
+              <td>
+                <span class="status-pill">
+                  <span class="status-dot"></span>
+                  {{ patient.status }}
+                </span>
+              </td>
+              <td>{{ patient.nextVisit }}</td>
+              <td class="patient-actions">
+                <button
+                  class="action-button"
+                  type="button"
+                  [attr.aria-label]="'Acciones para ' + patient.name"
+                  [attr.aria-expanded]="patientMenu() === patient.id"
+                  (click)="patientMenu.set(patientMenu() === patient.id ? null : patient.id)"
+                >
+                  <span></span><span></span><span></span>
+                </button>
+                @if (patientMenu() === patient.id) {
+                  <div class="action-menu">
+                    <button type="button" (click)="viewPatient(patient)">Ver ficha</button>
+                  </div>
+                }
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td class="empty-results" colspan="6">No se encontraron pacientes.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <footer class="table-footer">
+      <span>Mostrando {{ visiblePatients().length ? 1 : 0 }} a {{ visiblePatients().length }} de {{ visiblePatients().length }} pacientes</span>
+      <nav class="pagination pagination-controls" aria-label="Paginación">
+        <button class="page-link" type="button" aria-label="Página anterior" disabled>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m12 4-6 6 6 6" /></svg>
+        </button>
+        <button class="page-link current-page" type="button" aria-current="page">1</button>
+        <button class="page-link" type="button" aria-label="Página siguiente" disabled>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m8 4 6 6-6 6" /></svg>
+        </button>
+      </nav>
+    </footer>
+  </section>
+
+  @if (showAddForm()) {
+    <div class="modal-backdrop" (click)="closeAddForm()">
+      <section
+        class="patient-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="new-patient-title"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="modal-heading">
+          <div>
+            <h2 id="new-patient-title">Nuevo paciente</h2>
+            <p>Agrega los datos principales del paciente.</p>
+          </div>
+          <button class="modal-close" type="button" aria-label="Cerrar" (click)="closeAddForm()">×</button>
+        </div>
+        <form (ngSubmit)="addPatient()">
+          <label class="form-label" for="patient-name">Nombre completo</label>
+          <input
+            class="form-control"
+            id="patient-name"
+            name="patientName"
+            [(ngModel)]="draftName"
+            required
+            autofocus
+          />
+          <label class="form-label objective-label" for="patient-objective">Objetivo</label>
+          <input
+            class="form-control"
+            id="patient-objective"
+            name="patientObjective"
+            [(ngModel)]="draftObjective"
+            required
+          />
+          <div class="modal-actions">
+            <button class="btn btn-outline-secondary" type="button" (click)="closeAddForm()">Cancelar</button>
+            <button class="btn btn-success" type="submit">Guardar paciente</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  }
+
+  @if (selectedPatient(); as patient) {
+    <div class="modal-backdrop" (click)="selectedPatient.set(null)">
+      <section
+        class="patient-modal patient-details"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="patient-details-title"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="modal-heading">
+          <div class="detail-person">
+            <img [src]="patient.avatar" [alt]="'Foto de ' + patient.name" />
+            <div>
+              <h2 id="patient-details-title">{{ patient.name }}</h2>
+              <p>{{ patient.status }}</p>
+            </div>
+          </div>
+          <button class="modal-close" type="button" aria-label="Cerrar" (click)="selectedPatient.set(null)">×</button>
+        </div>
+        <dl class="patient-detail-list">
+          <div><dt>Objetivo</dt><dd>{{ patient.objective }}</dd></div>
+          <div><dt>Última consulta</dt><dd>{{ patient.lastVisit }}</dd></div>
+          <div><dt>Próxima cita</dt><dd>{{ patient.nextVisit }}</dd></div>
+        </dl>
+      </section>
+    </div>
+  }
+</div>

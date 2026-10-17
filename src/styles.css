@@ -1,1 +1,355 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  min-width: 320px;
+  background: #fbfaf8;
+  color: #152720;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.patients-page .modal-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  padding: 20px;
+  place-items: center;
+  background: rgba(17, 32, 25, 0.36);
+}
+
+.patients-page .patient-modal {
+  width: min(100%, 420px);
+  padding: 24px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 55px rgba(15, 32, 24, 0.22);
+}
+
+.patients-page .modal-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.patients-page .modal-heading h2 {
+  margin: 0 0 4px;
+  color: #193b2d;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.patients-page .modal-heading p {
+  margin: 0;
+  color: #707570;
+  font-size: 13px;
+}
+
+.patients-page .modal-close {
+  border: 0;
+  background: transparent;
+  color: #515953;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.patients-page .patient-modal .form-label {
+  margin: 0 0 6px;
+  color: #3c4540;
+  font-size: 13px;
+}
+
+.patients-page .patient-modal .form-control {
+  min-height: 42px;
+  border-color: #d9ded9;
+  box-shadow: none;
+}
+
+.patients-page .patient-modal .form-control:focus {
+  border-color: #6d9878;
+  box-shadow: 0 0 0 3px rgba(109, 152, 120, 0.14);
+}
+
+.patients-page .objective-label {
+  margin-top: 15px !important;
+}
+
+.patients-page .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.patients-page .modal-actions .btn {
+  min-height: 39px;
+  font-size: 13px;
+}
+
+.patients-page .modal-actions .btn-outline-secondary {
+  border-color: #d4d8d4;
+  background: white;
+  color: #3d4740;
+}
+
+.patients-page .detail-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.patients-page .detail-person img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.patients-page .patient-detail-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.patients-page .patient-detail-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #edf0ed;
+  font-size: 13px;
+}
+
+.patients-page .patient-detail-list dt {
+  color: #747b76;
+  font-weight: 400;
+}
+
+.patients-page .patient-detail-list dd {
+  margin: 0;
+  color: #24352b;
+  text-align: right;
+}
+
+@media (max-width: 1050px) {
+  .patients-page .summary-card {
+    gap: 13px;
+    padding: 12px;
+  }
+
+  .patients-page .summary-icon {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+
+  .patients-page .summary-accent {
+    display: none;
+  }
+
+  .patients-page .patients-table th:first-child,
+  .patients-page .patients-table td:first-child {
+    width: 27%;
+    padding-left: 12px;
+  }
+
+  .patients-page .patients-table th:nth-child(2),
+  .patients-page .patients-table td:nth-child(2) {
+    width: 16%;
+  }
+
+  .patients-page .patients-table th:nth-child(3),
+  .patients-page .patients-table td:nth-child(3) {
+    width: 19%;
+  }
+
+  .patients-page .patients-table th:nth-child(4),
+  .patients-page .patients-table td:nth-child(4) {
+    width: 17%;
+  }
+
+  .patients-page .patients-table th:nth-child(5),
+  .patients-page .patients-table td:nth-child(5) {
+    width: 17%;
+  }
+
+  .patients-page .patients-table th:last-child,
+  .patients-page .patients-table td:last-child {
+    width: 4%;
+  }
+
+  .patients-page .patient-name {
+    gap: 8px;
+  }
+
+  .patients-page .patient-name img {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .patients-page .patients-table td {
+    font-size: 12px;
+  }
+
+  .patients-page .status-pill {
+    gap: 5px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .patients-page {
+    gap: 12px;
+  }
+
+  .patients-page .page-heading h1 {
+    font-size: 25px;
+  }
+
+  .patients-page .page-heading p {
+    font-size: 13px;
+  }
+
+  .patients-page .add-patient-button {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .patients-page .summary-cards {
+    gap: 7px;
+  }
+
+  .patients-page .summary-card {
+    min-height: 79px;
+    gap: 7px;
+    padding: 7px;
+  }
+
+  .patients-page .summary-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .patients-page .summary-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .patients-page .summary-copy > span {
+    font-size: 10px;
+    white-space: normal;
+  }
+
+  .patients-page .summary-copy strong {
+    font-size: 21px;
+  }
+
+  .patients-page .patients-table th:nth-child(2),
+  .patients-page .patients-table td:nth-child(2),
+  .patients-page .patients-table th:nth-child(3),
+  .patients-page .patients-table td:nth-child(3) {
+    display: none;
+  }
+
+  .patients-page .patients-table th:first-child,
+  .patients-page .patients-table td:first-child {
+    width: 38%;
+  }
+
+  .patients-page .patients-table th:nth-child(4),
+  .patients-page .patients-table td:nth-child(4) {
+    width: 30%;
+  }
+
+  .patients-page .patients-table th:nth-child(5),
+  .patients-page .patients-table td:nth-child(5) {
+    width: 26%;
+  }
+
+  .patients-page .patients-table th:last-child,
+  .patients-page .patients-table td:last-child {
+    width: 6%;
+  }
+
+  .patients-page .patients-table th {
+    font-size: 11px;
+  }
+
+  .patients-page .patients-table td {
+    padding: 6px 3px;
+    font-size: 10px;
+  }
+
+  .patients-page .patient-name {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .patients-page .patient-name img {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .patients-page .status-pill {
+    gap: 4px;
+    padding: 0 6px;
+    font-size: 9px;
+  }
+
+  .patients-page .status-dot {
+    width: 6px;
+    height: 6px;
+    flex-basis: 6px;
+  }
+
+  .patients-page .patient-filters {
+    gap: 8px;
+  }
+
+  .patients-page .search-box {
+    width: auto;
+    flex: 1;
+  }
+
+  .patients-page .status-select {
+    width: 145px;
+  }
+
+  .patients-page .patient-filters .form-control,
+  .patients-page .patient-filters .form-select {
+    font-size: 11px;
+  }
+
+  .patients-page .table-footer {
+    min-height: 48px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .patients-page .pagination-controls {
+    gap: 4px;
+  }
+
+  .patients-page .pagination-controls .page-link {
+    width: 26px;
+    height: 26px;
+  }
+}

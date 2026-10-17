@@ -1,0 +1,61 @@
+<aside class="sidebar">
+  <a class="brand" href="#" aria-label="Nutrivida, inicio" (click)="$event.preventDefault(); optionSelected.emit('Panel')">
+    <svg class="brand-leaf" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M19 4c-2 8 2 13 8 16 4 2 7 1 9 0-1 7-6 11-13 10-9-1-14-9-12-18 1-4 4-7 8-8Z" />
+      <path d="M17 10c1 7 5 12 13 17" />
+    </svg>
+    <span>Nutrivida</span>
+  </a>
+
+  <nav class="main-nav" aria-label="Navegación principal">
+    @for (option of options; track option) {
+      <button
+        type="button"
+        class="nav-option"
+        [class.active]="activeOption() === option"
+        [attr.aria-current]="activeOption() === option ? 'page' : null"
+        (click)="optionSelected.emit(option)"
+      >
+        @switch (option) {
+          @case ('Panel') {
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z" />
+            </svg>
+          }
+          @case ('Pacientes') {
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="8" r="3" />
+              <path d="M3 20v-1a6 6 0 0 1 12 0v1ZM17 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.6V20h-4" />
+            </svg>
+          }
+          @case ('Agenda') {
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M7 3v4m10-4v4M3 10h18M8 14h2m4 0h2m-8 3h2" />
+            </svg>
+          }
+          @case ('Seguimiento') {
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 19h4v-7H4zM10 19h4V5h-4zM16 19h4V9h-4z" />
+            </svg>
+          }
+          @case ('Configuración') {
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+              <path d="m19.4 15 .1.1 1.4 1.1-1.5 2.6-1.7-.7a8 8 0 0 1-1.8 1l-.3 1.9h-3l-.3-1.9a8 8 0 0 1-1.8-1l-1.7.7-1.5-2.6 1.4-1.1a8 8 0 0 1 0-2l-1.4-1.1 1.5-2.6 1.7.7a8 8 0 0 1 1.8-1l.3-1.9h3l.3 1.9a8 8 0 0 1 1.8 1l1.7-.7 1.5 2.6-1.4 1.1a8 8 0 0 1 0 2Z" />
+            </svg>
+          }
+        }
+        <span>{{ option }}</span>
+      </button>
+    }
+  </nav>
+
+  <div class="sidebar-note">
+    <svg viewBox="0 0 150 110" aria-hidden="true">
+      <path d="M12 101C8 72 18 40 54 10c4 38-8 69-42 91Zm29 3c10-30 34-53 78-63-15 36-41 57-78 63Zm-9 0C26 77 18 57 5 43c-1 29 6 48 27 61Z" />
+    </svg>
+    <div class="note-rule"></div>
+    <p>Cuidar hoy<br />para un mañana<br />más saludable</p>
+  </div>
+</aside>

@@ -1,0 +1,488 @@
+:host {
+  display: block;
+  height: 100%;
+  min-height: 0;
+}
+
+.patients-page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 20px;
+  color: #152720;
+}
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+}
+
+.page-heading h1 {
+  margin: 0 0 2px;
+  color: #11241d;
+  font-size: clamp(26px, 2.8vw, 37px);
+  font-weight: 600;
+  letter-spacing: -1.3px;
+}
+
+.page-heading p {
+  margin: 0;
+  color: #676a70;
+  font-size: 18px;
+}
+
+.add-patient-button,
+.modal-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-color: #244e3a;
+  border-radius: 9px;
+  background: linear-gradient(120deg, #244e3a, #315e46);
+  color: #fff;
+}
+
+.add-patient-button {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.add-patient-button:hover,
+.modal-actions .btn-success:hover {
+  border-color: #173a2b;
+  background: #173a2b;
+}
+
+.add-patient-button svg {
+  width: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.7;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.summary-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 102px;
+  align-items: center;
+  gap: 27px;
+  overflow: hidden;
+  padding: 14px 18px;
+  border-radius: 10px;
+}
+
+.active-summary {
+  background: linear-gradient(110deg, #eff4ee, #edf2ec);
+}
+
+.appointments-summary {
+  background: linear-gradient(110deg, #f3f3eb, #f1f1e9);
+}
+
+.followup-summary {
+  background: linear-gradient(110deg, #fbefea, #f9ece7);
+}
+
+.summary-icon {
+  display: grid;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(217, 229, 215, 0.76);
+  color: #24543a;
+}
+
+.appointments-summary .summary-icon {
+  background: #e5e8da;
+}
+
+.followup-icon {
+  background: #f6d9ce;
+  color: #a73819;
+}
+
+.summary-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.people-icon svg {
+  fill: currentColor;
+  stroke-width: 1.2;
+}
+
+.summary-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary-copy > span {
+  overflow: hidden;
+  color: #28312e;
+  font-size: 14px;
+  line-height: 1.25;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.summary-copy strong {
+  color: #11251e;
+  font-size: 29px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.followup-summary .summary-copy strong {
+  color: #a52d17;
+}
+
+.summary-accent {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+  margin-left: auto;
+  fill: none;
+  stroke: #90a38f;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.leaf-accent {
+  fill: #94aa93;
+  stroke: #94aa93;
+}
+
+.clock-accent {
+  stroke: #c46b51;
+}
+
+.patient-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.search-box,
+.status-select {
+  position: relative;
+}
+
+.search-box {
+  width: min(42%, 478px);
+}
+
+.search-box > svg {
+  position: absolute;
+  z-index: 1;
+  top: 11px;
+  left: 14px;
+  width: 19px;
+  fill: none;
+  stroke: #50545c;
+  stroke-linecap: round;
+  stroke-width: 1.7;
+}
+
+.search-box .form-control {
+  height: 43px;
+  padding-left: 44px;
+}
+
+.status-select {
+  width: 184px;
+}
+
+.patient-filters .form-control,
+.patient-filters .form-select {
+  border-color: #d9d9d9;
+  border-radius: 9px;
+  background-color: rgba(255, 255, 255, 0.78);
+  color: #29302e;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.patient-filters .form-select {
+  height: 43px;
+}
+
+.patient-filters .form-control::placeholder {
+  color: #92949b;
+}
+
+.patients-table-card {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e9e7e3;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.79);
+  box-shadow: 0 6px 20px rgba(38, 48, 41, 0.045);
+}
+
+.table-responsive {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.patients-table {
+  width: 100%;
+  margin: 0;
+  table-layout: fixed;
+  color: #30343d;
+  vertical-align: middle;
+}
+
+.patients-table th {
+  height: 47px;
+  border-bottom-color: #e4e4e2;
+  color: #26312f;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.patients-table th:first-child,
+.patients-table td:first-child {
+  width: 23%;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.patients-table th:nth-child(2),
+.patients-table td:nth-child(2) {
+  width: 16%;
+}
+
+.patients-table th:nth-child(3),
+.patients-table td:nth-child(3) {
+  width: 20%;
+}
+
+.patients-table th:nth-child(4),
+.patients-table td:nth-child(4) {
+  width: 17%;
+}
+
+.patients-table th:nth-child(5),
+.patients-table td:nth-child(5) {
+  width: 17%;
+}
+
+.patients-table th:last-child,
+.patients-table td:last-child {
+  width: 7%;
+}
+
+.patients-table td {
+  position: relative;
+  height: 64px;
+  border-bottom-color: #e3e3e2;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.patients-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.patient-name {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #111916;
+}
+
+.patient-name img {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.status-pill {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 13px;
+  border-radius: 20px;
+  background: #e3f1e7;
+  color: #174b2b;
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #176735;
+}
+
+.patient-actions {
+  text-align: center !important;
+}
+
+.action-button {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.action-button:hover {
+  background: #f1f3f0;
+}
+
+.action-button span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #3f4448;
+}
+
+.action-menu {
+  position: absolute;
+  z-index: 2;
+  top: 46px;
+  right: 12px;
+  min-width: 110px;
+  padding: 4px;
+  border: 1px solid #e4e5e2;
+  border-radius: 7px;
+  background: white;
+  box-shadow: 0 5px 14px #15272020;
+}
+
+.action-menu button {
+  width: 100%;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #26312f;
+  font-size: 12px;
+  text-align: left;
+}
+
+.action-menu button:hover {
+  background: #f2f5f1;
+}
+
+.empty-results {
+  height: 100px !important;
+  color: #737773;
+  text-align: center !important;
+}
+
+.table-footer {
+  display: flex;
+  min-height: 59px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 0 20px;
+  border-top: 1px solid #e8e7e3;
+  color: #686b73;
+  font-size: 12px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 9px;
+  margin: 0;
+}
+
+.pagination-controls .page-link {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #e0e1df;
+  border-radius: 5px;
+  background: #fff;
+  color: #27312c;
+}
+
+.pagination-controls .page-link:disabled {
+  opacity: 1;
+  color: #39413d;
+}
+
+.pagination-controls .current-page {
+  border-color: #244e3a;
+  background: #244e3a;
+  color: white;
+}
+
+.pagination-controls svg {
+  width: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+@media (max-height: 700px) and (min-width: 761px) {
+  .patients-page {
+    gap: 12px;
+  }
+
+  .summary-card {
+    min-height: 78px;
+  }
+
+  .patients-table tbody tr td {
+    height: 48px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .patients-table .patient-name img {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .table-footer {
+    min-height: 48px;
+  }
+}
